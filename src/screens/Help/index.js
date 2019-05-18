@@ -1,12 +1,26 @@
-import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import React, { Component } from "react";
+import { Text, View } from "react-native";
 
-export default class Help extends Component {
+/**
+ *
+ *
+ * @class Help
+ * @extends {Component}
+ */
+class Help extends Component {
   render() {
     return (
-      <View>
-        <Text> HelpScreen </Text>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#121212"
+        }}
+      >
+        <Text style={{ color: "#fff" }}> Em desenvolvimento </Text>
       </View>
-    )
+    );
   }
 }
+export default Help;

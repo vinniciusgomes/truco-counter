@@ -4,14 +4,14 @@ import { Icon } from "native-base";
 import { createSwitchNavigator, createAppContainer } from "react-navigation";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 
-import Main from "~/screens/Main";
+import Home from "~/screens/Home";
 import Help from "~/screens/Help";
 import Settings from "~/screens/Settings";
 
 const Routes = createMaterialBottomTabNavigator(
   {
-    Main: {
-      screen: Main,
+    Home: {
+      screen: Home,
       navigationOptions: {
         tabBarLabel: "Home",
         tabBarIcon: ({ tintColor }) => (
@@ -51,7 +51,7 @@ const Routes = createMaterialBottomTabNavigator(
     }
   },
   {
-    initialRouteName: "Main",
+    initialRouteName: "Home",
     activeTintColor: "#fff",
     shifting: true,
     barStyle: {

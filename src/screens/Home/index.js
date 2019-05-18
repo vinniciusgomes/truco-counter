@@ -5,20 +5,19 @@ import {
   StatusBar,
   TouchableOpacity,
   StyleSheet,
-  ScrollView,
   Alert,
   Image,
-  Dimensions
+  Dimensions,
+  Platform
 } from "react-native";
-import AsyncStorage from "@react-native-community/async-storage";
 
 /**
  *
  *
- * @class Main
+ * @class Home
  * @extends {Component}
  */
-class Main extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -112,7 +111,7 @@ class Main extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="light-content" backgroundColor="transparent" />
+        <StatusBar barStyle="light-content" backgroundColor="#000" />
         <Image
           source={require("~/assets/img/bg.jpg")}
           style={{ height: 200, width: "auto" }}
@@ -308,4 +307,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Main;
+export default Home;

@@ -5,8 +5,8 @@
 
 ## Preview
 
-| Screen |                                    Preview                                     | Components | Estimation |       Status       |
-| ------ | :----------------------------------------------------------------------------: | :--------: | :--------: | :----------------: |
-| Home | <img src="https://cdn.vife.dev/img/apps/truco-counter/home.png" width="120" /> |     0      |    4h30    | :white_check_mark: |
-| Help  |                               Em desenvolvimento                               |     0      |     ~      |   :construction:   |
+| Screen   |                                    Preview                                     | Components | Estimation |       Status       |
+| -------- | :----------------------------------------------------------------------------: | :--------: | :--------: | :----------------: |
+| Home     | <img src="https://cdn.vife.dev/img/apps/truco-counter/home.png" width="120" /> |     0      |    4h30    | :white_check_mark: |
+| Help     |                               Em desenvolvimento                               |     0      |     ~      |   :construction:   |
 | Settings |                               Em desenvolvimento                               |     0      |     ~      |   :construction:   |

@@ -101,34 +101,12 @@ class Main extends Component {
   };
 
   resetScore = () => {
-    if (
-      this.state.scoreNos &&
-      this.state.scoreEles &&
-      this.state.partidasNos &&
-      this.state.partidasEles != 0
-    ) {
-      Alert.alert(
-        "Cuidado",
-        "Deseja mesmo resetar a partida?",
-        [
-          {
-            text: "Não"
-          },
-          {
-            text: "Sim",
-            style: "destructive",
-            onPress: () =>
-              this.setState({
-                scoreNos: 0,
-                scoreEles: 0,
-                partidasNos: 0,
-                partidasEles: 0
-              })
-          }
-        ],
-        { cancelable: false }
-      );
-    }
+    this.setState({
+      scoreNos: 0,
+      scoreEles: 0,
+      partidasNos: 0,
+      partidasEles: 0
+    });
   };
 
   render() {

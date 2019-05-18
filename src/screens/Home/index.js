@@ -33,9 +33,6 @@ class Home extends Component {
 
   addScoreNos = () => {
     if (this.state.scoreNos >= 12) {
-      this.setState({
-        partidasNos: this.state.partidasNos + 1
-      });
       Alert.alert(
         "Nós ganhamos!",
         "Deseja continuar a partida?",
@@ -47,7 +44,11 @@ class Home extends Component {
           },
           {
             text: "Sim",
-            onPress: () => this.setState({ scoreNos: 0 })
+            onPress: () =>
+              this.setState({
+                scoreNos: 0,
+                partidasNos: this.state.partidasNos + 1
+              })
           }
         ],
         { cancelable: false }
@@ -67,9 +68,6 @@ class Home extends Component {
 
   addScoreEles = () => {
     if (this.state.scoreEles >= 12) {
-      this.setState({
-        partidasEles: this.state.partidasEles + 1
-      });
       Alert.alert(
         "Eles vencerão!",
         "Deseja continuar a partida?",
@@ -81,7 +79,11 @@ class Home extends Component {
           },
           {
             text: "Sim",
-            onPress: () => this.setState({ scoreEles: 0 })
+            onPress: () =>
+              this.setState({
+                scoreEles: 0,
+                partidasEles: this.state.partidasEles + 1
+              })
           }
         ],
         { cancelable: false }

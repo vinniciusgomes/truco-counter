@@ -47,6 +47,7 @@ class Home extends Component {
             onPress: () =>
               this.setState({
                 scoreNos: 0,
+                scoreEles: 0,
                 partidasNos: this.state.partidasNos + 1
               })
           }
@@ -82,6 +83,7 @@ class Home extends Component {
             onPress: () =>
               this.setState({
                 scoreEles: 0,
+                scoreNos: 0,
                 partidasEles: this.state.partidasEles + 1
               })
           }

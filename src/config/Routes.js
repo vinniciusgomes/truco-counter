@@ -7,9 +7,23 @@ import { createMaterialBottomTabNavigator } from "react-navigation-material-bott
 import Home from "~/screens/Home";
 import Help from "~/screens/Help";
 import Settings from "~/screens/Settings";
+import Splash from "~/screens/Splash";
 
-const Routes = createMaterialBottomTabNavigator(
+const Routes = createSwitchNavigator(
   {
+    Splash: {
+      screen: Splash,
+      navigationOptions: {
+        tabBarLabel: "Home",
+        tabBarIcon: ({ tintColor }) => (
+          <Icon
+            name="cards-playing-outline"
+            type="MaterialCommunityIcons"
+            style={{ color: tintColor, fontSize: 20 }}
+          />
+        )
+      }
+    },
     Home: {
       screen: Home,
       navigationOptions: {
@@ -51,7 +65,7 @@ const Routes = createMaterialBottomTabNavigator(
     }
   },
   {
-    initialRouteName: "Home",
+    initialRouteName: "Splash",
     activeTintColor: "#fff",
     shifting: true,
     barStyle: {

@@ -247,7 +247,9 @@ class Home extends Component {
           <View style={{ alignItems: "center" }}>
             <TouchableOpacity onPress={() => this.resetScore()}>
               <View style={{ marginTop: 30 }}>
-                <Text style={{ color: "rgb(129,129,129)", fontSize: 12 }}>ZERAR PLACAR</Text>
+                <Text style={{ color: "rgb(129,129,129)", fontSize: 12 }}>
+                  ZERAR PLACAR
+                </Text>
               </View>
             </TouchableOpacity>
           </View>

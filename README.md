@@ -1,4 +1,4 @@
-# Truco counter 🃏
+# Truco counter 🎲
 
 ![version](https://img.shields.io/badge/version-0.0.3-blue.svg?cacheSeconds=2592000)
 ![vunerabilities](https://img.shields.io/snyk/vulnerabilities/npm/mocha.svg)

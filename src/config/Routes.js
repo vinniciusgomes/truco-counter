@@ -5,8 +5,6 @@ import { createSwitchNavigator, createAppContainer } from "react-navigation";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 
 import Home from "~/screens/Home";
-import Help from "~/screens/Help";
-import Settings from "~/screens/Settings";
 import Splash from "~/screens/Splash";
 
 const Routes = createSwitchNavigator(
@@ -36,36 +34,10 @@ const Routes = createSwitchNavigator(
           />
         )
       }
-    },
-    Help: {
-      screen: Help,
-      navigationOptions: {
-        tabBarLabel: "Help",
-        tabBarIcon: ({ tintColor }) => (
-          <Icon
-            name="questioncircleo"
-            type="AntDesign"
-            style={{ color: tintColor, fontSize: 20 }}
-          />
-        )
-      }
-    },
-    Settings: {
-      screen: Settings,
-      navigationOptions: {
-        tabBarLabel: "Settings",
-        tabBarIcon: ({ tintColor }) => (
-          <Icon
-            name="setting"
-            type="AntDesign"
-            style={{ color: tintColor, fontSize: 20 }}
-          />
-        )
-      }
     }
   },
   {
-    initialRouteName: "Splash",
+    initialRouteName: "Home",
     activeTintColor: "#fff",
     shifting: true,
     barStyle: {

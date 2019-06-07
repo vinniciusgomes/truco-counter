@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
   },
   scoreboard: {
     width: Dimensions.get("window").width - 40,
-    height: 160,
+    height: 200,
     backgroundColor: "#1b1b1b",
     shadowColor: "#000",
     shadowOffset: {
@@ -61,7 +61,7 @@ export const styles = StyleSheet.create({
     color: "#909090"
   },
   scoreText: {
-    fontSize: 50,
+    fontSize: 70,
     fontWeight: "500",
     color: "#fff"
   },

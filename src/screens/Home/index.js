@@ -7,6 +7,9 @@ import {
   Alert,
   Image
 } from "react-native";
+import GestureRecognizer, {
+  swipeDirections
+} from "react-native-swipe-gestures";
 
 import { styles } from "./styles";
 
@@ -25,12 +28,47 @@ class Home extends Component {
       partidasTime1: 0,
       partidasTime2: 0,
       darkMode: true,
-      truco: false
+      truco: false,
+      gestureName: "none"
     };
   }
   static navigationOptions = {
     header: null
   };
+
+  onSwipeUpTime1(gestureState) {
+    this.addScoreTime1();
+  }
+
+  onSwipeDownTime1(gestureState) {
+    this.removeScoreTime1();
+  }
+
+  onSwipeTime1(gestureName, gestureState) {
+    const { SWIPE_UP, SWIPE_DOWN } = swipeDirections;
+    this.setState({ gestureName: gestureName });
+    switch (gestureName) {
+      case SWIPE_UP:
+        this.removeScoreTime1();
+        break;
+      case SWIPE_DOWN:
+        this.addScoreTime1();
+        break;
+    }
+  }
+
+  onSwipeTime2(gestureName, gestureState) {
+    const { SWIPE_UP, SWIPE_DOWN } = swipeDirections;
+    this.setState({ gestureName: gestureName });
+    switch (gestureName) {
+      case SWIPE_UP:
+        this.removeScoreTime2();
+        break;
+      case SWIPE_DOWN:
+        this.addScoreTime2();
+        break;
+    }
+  }
 
   addScoreTime1 = () => {
     if (this.state.scoreTime1 >= 11) {
@@ -155,6 +193,10 @@ class Home extends Component {
   };
 
   render() {
+    const config = {
+      velocityThreshold: 0.1,
+      directionalOffsetThreshold: 80
+    };
     return (
       <View style={styles.container}>
         <StatusBar
@@ -170,9 +212,14 @@ class Home extends Component {
               style={styles.iconCard}
             />
             <View style={styles.pontuacao}>
-              <TouchableOpacity onPress={() => this.addScoreTime1()}>
+              <GestureRecognizer
+                onSwipe={(direction, state) =>
+                  this.onSwipeTime1(direction, state)
+                }
+                config={config}
+              >
                 <Text style={styles.scoreText}>{this.state.scoreTime1}</Text>
-              </TouchableOpacity>
+              </GestureRecognizer>
               <Text style={styles.x}>x</Text>
               <TouchableOpacity onPress={() => this.addScoreTime2()}>
                 <Text style={styles.scoreText}>{this.state.scoreTime2}</Text>
@@ -188,26 +235,23 @@ class Home extends Component {
             <Text style={styles.text500}>Time 1</Text>
             <Text style={styles.text500}>Time 2</Text>
           </View>
+
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
             <View style={{ flexDirection: "row", justifyContent: "center" }}>
-              <TouchableOpacity onPress={() => this.addScoreTime1()}>
+              <TouchableOpacity onPress={() => this.setState({ scoreTime1: this.state.scoreTime1 + 3})}>
                 <View style={styles.addButton}>
-                  <Text style={{ color: "#fff", fontSize: 20 }}>
-                    +{this.state.truco ? "3" : "1"}
-                  </Text>
+                  <Text style={{ color: "#fff", fontSize: 19 }}>+3</Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
                 disabled={this.state.scoreTime1 == 0 ? true : false}
-                onPress={() => this.removeScoreTime1()}
+                onPress={() => this.setState({ scoreTime1: this.state.scoreTime1 - 3})}
                 style={{ opacity: this.state.scoreTime1 == 0 ? 0.5 : 1 }}
               >
                 <View style={styles.menos}>
-                  <Text style={{ color: "#fff", fontSize: 20 }}>
-                    -{this.state.truco ? "3" : "1"}
-                  </Text>
+                  <Text style={{ color: "#fff", fontSize: 19 }}>-3</Text>
                 </View>
               </TouchableOpacity>
             </View>
@@ -215,9 +259,7 @@ class Home extends Component {
             <View style={{ flexDirection: "row", justifyContent: "center" }}>
               <TouchableOpacity onPress={() => this.addScoreTime2()}>
                 <View style={styles.addButton}>
-                  <Text style={{ color: "#fff", fontSize: 20 }}>
-                    +{this.state.truco ? "3" : "1"}
-                  </Text>
+                  <Text style={{ color: "#fff", fontSize: 19 }}>+3</Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
@@ -226,27 +268,99 @@ class Home extends Component {
                 style={{ opacity: this.state.scoreTime2 == 0 ? 0.5 : 1 }}
               >
                 <View style={styles.menos}>
-                  <Text style={{ color: "#fff", fontSize: 20 }}>
-                    -{this.state.truco ? "3" : "1"}
-                  </Text>
+                  <Text style={{ color: "#fff", fontSize: 19 }}>-3</Text>
                 </View>
               </TouchableOpacity>
             </View>
           </View>
-          <View style={{ alignItems: "center" }}>
-            <TouchableOpacity
-              onPress={() => this.setState({ truco: !this.state.truco })}
-            >
-              <View style={styles.buttonOutline}>
-                <Text style={{ color: "rgb(129,129,129)" }}>
-                  {this.state.truco ? "DESABILITAR TRUCO" : "TRUCO"}
-                </Text>
-              </View>
-            </TouchableOpacity>
+
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginTop: -30
+            }}
+          >
+            <View style={{ flexDirection: "row", justifyContent: "center" }}>
+              <TouchableOpacity onPress={() => this.addScoreTime1()}>
+                <View style={styles.addButton}>
+                  <Text style={{ color: "#fff", fontSize: 19 }}>+9</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                disabled={this.state.scoreTime1 == 0 ? true : false}
+                onPress={() => this.removeScoreTime1()}
+                style={{ opacity: this.state.scoreTime1 == 0 ? 0.5 : 1 }}
+              >
+                <View style={styles.menos}>
+                  <Text style={{ color: "#fff", fontSize: 19 }}>-9</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.separator} />
+            <View style={{ flexDirection: "row", justifyContent: "center" }}>
+              <TouchableOpacity onPress={() => this.addScoreTime2()}>
+                <View style={styles.addButton}>
+                  <Text style={{ color: "#fff", fontSize: 19 }}>+9</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                disabled={this.state.scoreTime2 == 0 ? true : false}
+                onPress={() => this.removeScoreTime2()}
+                style={{ opacity: this.state.scoreTime2 == 0 ? 0.5 : 1 }}
+              >
+                <View style={styles.menos}>
+                  <Text style={{ color: "#fff", fontSize: 19 }}>-9</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
           </View>
+
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginTop: -30
+            }}
+          >
+            <View style={{ flexDirection: "row", justifyContent: "center" }}>
+              <TouchableOpacity onPress={() => this.addScoreTime1()}>
+                <View style={styles.addButton}>
+                  <Text style={{ color: "#fff", fontSize: 19 }}>+12</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                disabled={this.state.scoreTime1 == 0 ? true : false}
+                onPress={() => this.removeScoreTime1()}
+                style={{ opacity: this.state.scoreTime1 == 0 ? 0.5 : 1 }}
+              >
+                <View style={styles.menos}>
+                  <Text style={{ color: "#fff", fontSize: 19 }}>-12</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.separator} />
+            <View style={{ flexDirection: "row", justifyContent: "center" }}>
+              <TouchableOpacity onPress={() => this.addScoreTime2()}>
+                <View style={styles.addButton}>
+                  <Text style={{ color: "#fff", fontSize: 19 }}>+12</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                disabled={this.state.scoreTime2 == 0 ? true : false}
+                onPress={() => this.removeScoreTime2()}
+                style={{ opacity: this.state.scoreTime2 == 0 ? 0.5 : 1 }}
+              >
+                <View style={styles.menos}>
+                  <Text style={{ color: "#fff", fontSize: 19 }}>-12</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          </View>
+
           <View style={{ alignItems: "center" }}>
             <TouchableOpacity onPress={() => this.resetScore()}>
-              <View style={{ marginTop: 30 }}>
+              <View style={styles.buttonOutline}>
                 <Text style={{ color: "rgb(129,129,129)", fontSize: 12 }}>
                   ZERAR PLACAR
                 </Text>

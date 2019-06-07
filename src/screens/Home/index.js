@@ -221,9 +221,14 @@ class Home extends Component {
                 <Text style={styles.scoreText}>{this.state.scoreTime1}</Text>
               </GestureRecognizer>
               <Text style={styles.x}>x</Text>
-              <TouchableOpacity onPress={() => this.addScoreTime2()}>
+              <GestureRecognizer
+                onSwipe={(direction, state) =>
+                  this.onSwipeTime2(direction, state)
+                }
+                config={config}
+              >
                 <Text style={styles.scoreText}>{this.state.scoreTime2}</Text>
-              </TouchableOpacity>
+              </GestureRecognizer>
             </View>
             <Text style={{ color: "#909090" }}>
               {this.state.partidasTime1} x {this.state.partidasTime2}
@@ -240,14 +245,20 @@ class Home extends Component {
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
             <View style={{ flexDirection: "row", justifyContent: "center" }}>
-              <TouchableOpacity onPress={() => this.setState({ scoreTime1: this.state.scoreTime1 + 3})}>
+              <TouchableOpacity
+                onPress={() =>
+                  this.setState({ scoreTime1: this.state.scoreTime1 + 3 })
+                }
+              >
                 <View style={styles.addButton}>
                   <Text style={{ color: "#fff", fontSize: 19 }}>+3</Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
                 disabled={this.state.scoreTime1 == 0 ? true : false}
-                onPress={() => this.setState({ scoreTime1: this.state.scoreTime1 - 3})}
+                onPress={() =>
+                  this.setState({ scoreTime1: this.state.scoreTime1 - 3 })
+                }
                 style={{ opacity: this.state.scoreTime1 == 0 ? 0.5 : 1 }}
               >
                 <View style={styles.menos}>
